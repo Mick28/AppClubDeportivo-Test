@@ -16,6 +16,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withClassName
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import com.grupo5.clubdeportivo.R
 import com.grupo5.clubdeportivo.soporte.PruebaUi
 import org.hamcrest.Matchers.equalTo
@@ -196,6 +197,7 @@ class RegistroSocioTest {
         ActivityScenario.launch(RegistroSocioActivity::class.java).use { escenario ->
             completar(Formulario())
             onView(withId(R.id.btnCancelar)).perform(scrollTo(), click())
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
             assertEquals(Lifecycle.State.DESTROYED, escenario.state)
             assertEquals(9, socios())
         }

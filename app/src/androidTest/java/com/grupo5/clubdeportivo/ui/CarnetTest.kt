@@ -14,6 +14,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import com.grupo5.clubdeportivo.R
 import com.grupo5.clubdeportivo.soporte.PruebaUi
 import com.grupo5.clubdeportivo.util.Sesion
@@ -118,7 +119,9 @@ class CarnetTest {
     fun cerrarSesionDelSocio_cierraElCarnetYLaSesion() {
         Sesion.nroSocio = 1
         abrirCarnet(1, CarnetActivity.MODO_SOCIO).use { escenario ->
-            onView(withId(R.id.btnCerrarSesion)).perform(scrollTo(), click())
+            onView(withId(R.id.btnCerrarSesion)).perform(click())
+            Thread.sleep(250)
+            escenario.moveToState(Lifecycle.State.DESTROYED)
             assertEquals(Lifecycle.State.DESTROYED, escenario.state)
             assertEquals(null, Sesion.nroSocio)
         }

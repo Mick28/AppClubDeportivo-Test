@@ -66,7 +66,7 @@ class LoginTest {
             onView(withId(R.id.tvNombreCarnet)).check(matches(withText("Ana")))
             onView(withId(R.id.tvEstadoCarnet)).check(matches(withText("HABILITADO")))
             onView(withId(R.id.tvBienvenidaSocio)).check(matches(withText("Hola, Ana")))
-            onView(withId(R.id.btnCerrarSesion)).perform(scrollTo()).check(matches(isDisplayed()))
+            onView(withId(R.id.btnCerrarSesion)).check(matches(isDisplayed()))
             // El socio no tiene botón de volver ni acciones de empleado.
             onView(withId(R.id.btnVolver)).check(matches(withEffectiveVisibility(Visibility.GONE)))
             onView(withId(R.id.btnRegistrarApto)).check(matches(withEffectiveVisibility(Visibility.GONE)))
